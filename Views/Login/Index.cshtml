@@ -1,0 +1,20 @@
+﻿@model User
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+    ViewData["Title"] = "Login Page";
+}
+<h2>Вход в систему</h2>
+<h2>@ViewData["Error"]</h2>
+<form asp-controller="Login" asp-action="Login" method='post'>
+    <p>
+        <label>Логин</label><br />
+        <input asp-for="Login" required/>
+        <span asp-validation-for="Login"/>
+    </p>
+    <p>
+        <label>Пароль</label><br />
+        <input asp-for="Password" required/>
+        <span asp-validation-for="Password" />
+    </p>
+    <input type='submit' value='Войти'/>
+</form>

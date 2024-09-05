@@ -1,0 +1,53 @@
+[
+  {
+    "roles": [ "Admin", "Teacher" ],
+    "url": "Group",
+    "name": "Группы"
+  },
+  {
+    "roles": [ "Admin", "Teacher", "Student" ],
+    "url": "Discipline",
+    "name": "Дисциплины"
+  },
+  {
+    "roles": [ "Admin" ],
+    "url": "Theme",
+    "name": "Темы"
+  },
+  {
+    "roles": [ "Admin", "Teacher" ],
+    "url": "Test",
+    "name": "Тесты"
+  },
+  {
+    "roles": [ "Admin", "Teacher", "Student" ],
+    "url": "Progress",
+    "name": "Успеваемость"
+  },
+  {
+    "roles": [ "Admin" ],
+    "url": "Question",
+    "name": "Задания"
+  },
+  {
+    "roles": [ "Admin" ],
+    "url": "Answer",
+    "name": "Ответы"
+  },
+  {
+    "roles": [ "Admin", "Teacher", "Student" ],
+    "url": "LearningMaterial",
+    "name": "Учебные материалы"
+  },
+  {
+    "roles": [ "Admin" ],
+    "url": "User",
+    "name": "Пользователи"
+  },
+  {
+    "roles": [ "Admin", "Teacher"],
+    "url": "UserAnswer",
+    "name": "Ответы пользователей"
+  }
+
+]

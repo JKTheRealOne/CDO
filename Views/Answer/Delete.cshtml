@@ -1,0 +1,57 @@
+﻿@model Answer
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Удалить</h1>
+
+<h3>Вы уверены что хотите удалить ответ?</h3>
+<div>
+    <h4>Тема</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Answernm)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Answernm)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Isright)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Isright)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.QuestioncdNavigation.Questionnm)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.QuestioncdNavigation.Questionnm)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.QuestioncdNavigation.TestcdNavigation.Testname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.QuestioncdNavigation.TestcdNavigation.Testname)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.QuestioncdNavigation.TestcdNavigation.DisciplinecdNavigation.Disciplinename)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.QuestioncdNavigation.TestcdNavigation.DisciplinecdNavigation.Disciplinename)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.QuestioncdNavigation.TestcdNavigation.ThemecdNavigation.Themename)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.QuestioncdNavigation.TestcdNavigation.ThemecdNavigation.Themename)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Answercd" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Вернуться</a>
+    </form>
+</div>

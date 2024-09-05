@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Question>
+@using CDO.Data
+
+<h1>Тест по теме: @ViewBag.Testname</h1>
+
+<form asp-controller="Test" asp-action="PassTest" method='post'>
+<div>
+    <h4>Список вопросов</h4>
+    <hr />
+    <dl class="row">
+        @{
+            foreach (var question in Model)
+            {
+               <dd class="col-sm-10">
+                   @Html.DisplayFor(x => question.Questionnm)
+               </dd>
+               <fieldset>
+                    @if(question.Answers.Where(x => x.Isright).Count() > 1)
+                    {
+                        foreach (var answer in question.Answers)
+                        {
+                            <input type="checkbox" asp-asp-for="@answer.Answernm" name="@question.Questioncd" value="@answer.Answercd" />
+                            <label asp-for=@answer.Answernm>@answer.Answernm</label>
+                            <br />
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var answer in question.Answers)
+                        {
+                            <input type="radio" required="true" asp-asp-for="@answer.Answernm" name="@question.Questioncd" value="@answer.Answercd" />
+                            <label asp-for=@answer.Answernm>@answer.Answernm</label>
+                            <br />
+                        }
+                    }
+               </fieldset>
+            }
+        }
+    </dl>
+</div>
+<div class="form-group">
+    <input type="submit" value="Завершить" class="btn btn-primary" />
+</div>
+</form>

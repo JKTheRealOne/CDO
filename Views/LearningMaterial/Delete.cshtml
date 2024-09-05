@@ -1,0 +1,45 @@
+﻿@model LearningMaterial
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Удалить</h1>
+
+<h3>Вы уверены что хотите удалить учебный материал?</h3>
+<div>
+    <h4>Учебный материал</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Materialname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Materialname)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Materialcontent)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Materialcontent)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Materialvolume)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Materialvolume)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ThemecdNavigation.Themename)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ThemecdNavigation.Themename)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="LearningMaterialcd" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Вернуться</a>
+    </form>
+</div>

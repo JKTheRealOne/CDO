@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Group>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Группы</h1>
+
+<p>
+    <a asp-action="Create">Добавить запись</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FinishDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FinishDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-controller="Group" asp-route-cd="@item.Groupcd">Изменить</a> |
+                    <a asp-action="Details" asp-controller ="Group" asp-route-cd="@item.Groupcd">Подробности</a> |
+                    <a asp-action="Delete" asp-controller="Group" asp-route-cd="@item.Groupcd">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

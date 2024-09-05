@@ -1,0 +1,67 @@
+﻿@model Answer
+@using CDO.Data
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Подробности</h1>
+
+<div>
+    <h4>Ответ</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Answernm)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Answernm)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Isright)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Isright)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.QuestioncdNavigation.Questionnm)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.QuestioncdNavigation.Questionnm)
+        </dd>
+        @{
+            var context = new PostgresContext();
+            var answers = context.Answers.Where(x => x.Questioncd == Model.Questioncd);
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(x => Model.Answernm)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(x => Model.Isright)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in answers)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Answernm)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Isright)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-controller="Question" asp-route-cd="@Model.Answercd">Редактировать</a> |
+    <a asp-action="Index" asp-controller="Question">Вернуться</a>
+
+</div>

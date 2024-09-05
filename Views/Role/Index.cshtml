@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Role>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Роли</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Rolename)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rolename)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,56 @@
+﻿@model LearningMaterial
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Создать</h1>
+
+<h4>Ученый материал</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Materialname" class="control-label"></label>
+                <input asp-for="Materialname" class="form-control" />
+                <span asp-validation-for="Materialname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Materialcontent" class="control-label"></label>
+                <input asp-for="Materialcontent" class="form-control" />
+                <span asp-validation-for="Materialcontent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Materialvolume" class="control-label"></label>
+                <input asp-for="Materialvolume" class="form-control" />
+                <span asp-validation-for="Materialvolume" class="text-danger"></span>
+            </div>
+            @{
+                <div class="form-group">
+                    <label Discipline class="control-label"></label>
+                    <select class="form-control" asp-items="ViewBag.Disciplinecd"></select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Themecd" class="control-label"></label>
+                    <select asp-for="Themecd" class="form-control" asp-items=ViewBag.Themecd></select>
+                </div>
+            }
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Вернуться</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

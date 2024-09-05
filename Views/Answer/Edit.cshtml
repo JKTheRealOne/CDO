@@ -1,0 +1,51 @@
+﻿@model Answer
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Изменить</h1>
+
+<h4>Ответ</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @* <input type="hidden" asp-for="DisciplinecdNavigation" /> *@
+            <input type="hidden" asp-for="Answercd" />
+            <div class="form-group">
+                <label asp-for="Answernm" class="control-label"></label>
+                <input asp-for="Answernm" class="form-control" />
+                <span asp-validation-for="Answernm" class="text-danger"></span>
+            </div>
+            <fieldset>
+                <div>
+                    <input type="radio" name="teacher" value="false" />
+                    <label asp-for="Isright">Неверный</label>
+                </div>
+                <div>
+                    <input type="radio" name="teacher" value="true" />
+                    <label asp-for="Isright">Верный</label>
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <label asp-for="Questioncd" class="control-label"></label>
+                <select asp-for="Questioncd" class="form-control" asp-items="ViewBag.Questioncd"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Вернуться</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

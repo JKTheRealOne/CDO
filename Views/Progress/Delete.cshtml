@@ -1,0 +1,69 @@
+﻿@model Progress
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Удалить</h1>
+
+<h3>Вы уверены что хотите удалить запись об успеваеомсти?</h3>
+<div>
+    <h4>Запись об успеваеомсти</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UsercdNavigation.Fio)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UsercdNavigation.Fio)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UsercdNavigation.GroupcdNavigation.Number)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UsercdNavigation.GroupcdNavigation.Number)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestcdNavigation.DisciplinecdNavigation.Disciplinename)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestcdNavigation.DisciplinecdNavigation.Disciplinename)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestcdNavigation.ThemecdNavigation.Themename)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestcdNavigation.ThemecdNavigation.Themename)
+        </dd>
+        @* <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Progressresult)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Progressresult)
+        </dd> *@
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Progressgrade)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Progressgrade)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Progressdate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Progressdate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Progressduration)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Progressduration)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Progresscd" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Вернуться</a>
+    </form>
+</div>

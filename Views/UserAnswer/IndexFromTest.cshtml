@@ -1,0 +1,40 @@
+﻿@model IEnumerable<UserAnswer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Ответы пользователей</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProgresscdNavigation.UsercdNavigation.Fio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuestioncdNavigation.Questionnm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AnswercdNavigation.Answernm)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProgresscdNavigation.UsercdNavigation.Fio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestioncdNavigation.Questionnm)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AnswercdNavigation.Answernm)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

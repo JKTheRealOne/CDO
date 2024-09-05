@@ -1,0 +1,119 @@
+﻿@model IEnumerable<Progress>
+@using CDO.Models
+@using System.Security.Claims
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Успеваемость</h1>
+
+@* <p>
+    <a asp-action="Create">Добавить запись</a>
+</p> *@
+@{
+    var role = ((ClaimsIdentity)User.Identity).Claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value).ToList();
+    if (role.Contains("Admin") | role.Contains("Teacher"))
+    {
+        @using (Html.BeginForm())
+        {
+            <p>
+                ФИО студента: @Html.TextBox("SearchString")
+                <input class="btn btn-light" type="submit" value="Поиск" /> | <a class="btn btn-light" asp-action="Index">Сбросить</a>
+            </p>
+        }
+    }
+}
+@* 
+@using (Html.BeginForm())
+{
+    <p>
+        ФИО студента: @Html.TextBox("SearchString")
+        <input class="btn btn-light" type="submit" value="Поиск" /> | <a class="btn btn-light" asp-action="Index">Сбросить</a>
+    </p>
+} *@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TestcdNavigation.Testname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TestcdNavigation.DisciplinecdNavigation.Disciplinename)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TestcdNavigation.ThemecdNavigation.Themename)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UsercdNavigation.Fio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UsercdNavigation.GroupcdNavigation.Number)
+            </th>
+            @* <th>
+                @Html.DisplayNameFor(model => model.Progressresult)
+            </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.Progressgrade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Progressdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Progressduration)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TestcdNavigation.Testname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TestcdNavigation.DisciplinecdNavigation.Disciplinename)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TestcdNavigation.ThemecdNavigation.Themename)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UsercdNavigation.Fio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UsercdNavigation.GroupcdNavigation.Number)
+                </td>
+                @* <td>
+                    @Html.DisplayFor(modelItem => item.Progressresult)
+                </td> *@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Progressgrade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Progressdate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Progressduration)
+                </td>
+                <td>
+                    @{
+                        if (role.Contains("Admin"))
+                        {
+                            <td>
+                            <a asp-action="Index" asp-controller="UserAnswers" asp-route-cd="@item.Progresscd">Перейти к ответам</a> |
+                            <a asp-action="Delete" asp-controller="Progress" asp-route-cd="@item.Progresscd">Удалить</a>
+                            </td>
+                        }
+                        if (role.Contains("Teacher"))
+                        {
+                        <td>
+                            <a asp-action="Details" asp-controller="Progress" asp-route-cd="@item.Progresscd">Перейти к ответам</a>
+                        </td>
+                        }
+                        }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

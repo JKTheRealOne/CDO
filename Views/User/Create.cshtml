@@ -1,0 +1,73 @@
+﻿@model User
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Создать</h1>
+
+<h4>Пользователь</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Fio" class="control-label"></label>
+                <input asp-for="Fio" class="form-control" />
+                <span asp-validation-for="Fio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Login" class="control-label"></label>
+                <input asp-for="Login" class="form-control" />
+                <span asp-validation-for="Login" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            @* <div class="form-group">
+                <label asp-for="Teacher" class="control-label"></label>
+                <input type="checkbox" asp-for="Teacher" class="form-control" />
+                <span asp-validation-for="Teacher" class="text-danger"></span>
+            </div> *@
+            <fieldset>
+                <div>
+                    <input type="radio" name="teacher" value="false" />
+                    <label asp-for="Teacher">Ученик</label>
+                </div>
+                <div>
+                    <input type="radio" name="teacher" value="true" />
+                    <label asp-for="Teacher">Преподаватель</label>
+                </div>
+            </fieldset>
+            @* <div class="form-group">
+                <label asp-for="Rolecd" class="control-label"></label>
+                <select asp-for="Rolecd" class="form-control" asp-items="ViewBag.Rolecd"></select>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="Groupcd" class="control-label"></label>
+                <select asp-for="Groupcd" class="form-control" asp-items="ViewBag.Groupcd"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Создать" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Вернуться</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

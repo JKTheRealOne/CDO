@@ -1,0 +1,55 @@
+﻿@using CDO.Data
+@model IEnumerable<Theme>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Темы</h1>
+
+<p>
+    <a asp-action="Create">Добавить запись</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Themename)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Themevolume)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DisciplinecdNavigation.Disciplinename)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Themename)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Themevolume)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DisciplinecdNavigation.Disciplinename)
+                </td>
+                <td>
+                    @{
+                        using var dbcontext = new PostgresContext();
+                        var id = dbcontext.Tests.Where(x => x.Themecd == item.Themecd).Select(y => y.Testcd);
+
+                    }
+                    <a asp-action="Edit" asp-controller="Theme" asp-route-cd="@item.Themecd">Изменить</a> |
+                    <a asp-action="Details" asp-controller="Theme" asp-route-cd="@item.Themecd">Подробности</a> |
+                    <a asp-action="Delete" asp-controller="Theme" asp-route-cd="@item.Themecd">Удалить</a> |
+                    <a asp-action="PassTest" asp-controller="Test" asp-route-cd="@id">Тест</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

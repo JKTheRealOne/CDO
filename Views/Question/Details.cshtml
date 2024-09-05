@@ -1,0 +1,72 @@
+﻿@model Question
+@using CDO.Data
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Подробности</h1>
+
+<div>
+    <h4>Задание</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Questionnm)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Questionnm)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestcdNavigation.Testname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestcdNavigation.Testname)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestcdNavigation.DisciplinecdNavigation.Disciplinename)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestcdNavigation.DisciplinecdNavigation.Disciplinename)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestcdNavigation.ThemecdNavigation.Themename)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestcdNavigation.ThemecdNavigation.Themename)
+        </dd>
+        @{
+            var answer = Model.Answers.FirstOrDefault();
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(x => answer.Answernm)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(x => answer.Isright)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Answers)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Answernm)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Isright)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        } 
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-controller="Question" asp-route-cd="@Model.Questioncd">Редактировать</a> |
+    <a asp-action="Create" asp-controller="Answer">Добавить ответ</a> |
+    <a asp-action="Index" asp-controller="Question">Вернуться</a>
+</div>

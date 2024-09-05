@@ -1,0 +1,78 @@
+﻿@model Progress
+@using CDO.Data
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Подробности</h1>
+
+<div>
+    <h4>Запись об успеваемости</h4>
+    <hr />
+    <dl class="row">
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UsercdNavigation.Fio)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UsercdNavigation.Fio)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestcdNavigation.ThemecdNavigation.Themename)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestcdNavigation.ThemecdNavigation.Themename)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Progressdate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Progressdate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Progressduration)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Progressduration)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Progressgrade)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Progressgrade)
+        </dd>
+        @{
+            var useranswers = Model.UserAnswers.FirstOrDefault();
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(x => useranswers.QuestioncdNavigation.Questionnm)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(x => useranswers.AnswercdNavigation.Answernm)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.UserAnswers)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.QuestioncdNavigation.Questionnm)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AnswercdNavigation.Answernm)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </dl>
+</div>
+<div>
+    <a asp-action="Index" asp-controller="Progress">Вернуться</a>
+</div>
+

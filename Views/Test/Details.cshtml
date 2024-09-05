@@ -1,0 +1,130 @@
+﻿@model Test
+@using CDO.Data
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Подробности</h1>
+
+<div>
+    <h4>Тест</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Testname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Testname)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Testnumquest)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Testnumquest)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Testduration)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Testduration)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DisciplinecdNavigation.Disciplinename)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DisciplinecdNavigation.Disciplinename)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ThemecdNavigation.Themename)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ThemecdNavigation.Themename)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UsercdNavigation.Fio)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UsercdNavigation.Fio)
+        </dd>
+        <div>
+            <a asp-action="Edit" asp-controller="Test" asp-route-cd="@Model.Testcd">Редактировать</a> |
+            @* <a asp-action="Test" asp-controller="Test" asp-route-cd="@Model.Testcd">Пройти</a> | *@
+            <button onclick="history.back()">Назад</button>
+        </div>
+        @* @{
+            var user = Model.Progresses.FirstOrDefault();
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(x => user.UsercdNavigation.Fio)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(x => user.Progressresult)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(x => user.Progressgrade)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(x => user.Progressduration)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(x => user.Progressdate)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Progresses)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UsercdNavigation.Fio)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Progressresult)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Progressgrade)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Progressduration)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Progressdate)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        } *@
+        @{
+            var question = Model.Questions.FirstOrDefault();
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(x => question.Questionnm)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Questions.OrderBy(x => x.Questioncd))
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Questionnm)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-controller="Question" asp-route-cd="@item.Questioncd">Изменить</a> |
+                                <a asp-action="Details" asp-controller="Question" asp-route-cd="@item.Questioncd">Подробности</a> |
+                                <a asp-action="Delete" asp-controller="Question" asp-route-cd="@item.Questioncd">Удалить</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+            <a asp-action="Create" asp-controller="Question">Добавить вопрос</a>
+    </dl>
+</div>

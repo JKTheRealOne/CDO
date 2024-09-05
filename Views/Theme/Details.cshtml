@@ -1,0 +1,123 @@
+﻿@using System.Security.Claims
+@using CDO.Data
+@model Theme
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Подробности</h1>
+
+<div>
+    <h4>Тема</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Themename)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Themename)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Themevolume)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Themevolume)
+        </dd>
+        <dd class="col-sm-10">
+            @Html.DisplayNameFor(model => model.DisciplinecdNavigation.Disciplinename)
+        </dd>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DisciplinecdNavigation.Disciplinename)
+        </dd>
+        <dd class="col-sm-10">
+            @Html.DisplayNameFor(model => model.DisciplinecdNavigation.UsercdNavigation.Fio)
+        </dd>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DisciplinecdNavigation.UsercdNavigation.Fio)
+        </dd>
+            @{var materials = Model.LearningMaterials.FirstOrDefault();
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(x => materials.Materialname)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(x => materials.Materialcontent)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.LearningMaterials)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Materialname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Materialcontent)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            }
+        @{
+            var test = Model.Tests.FirstOrDefault();
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(x => test.Testname)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(x => test.Testnumquest)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(x => test.Testduration)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Tests)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Testname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Testnumquest)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Testduration)
+                            </td>
+                            @{
+                                var roles = ((ClaimsIdentity)User.Identity).Claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value).ToList();
+                                if (roles.Contains("Admin") | roles.Contains("Teacher"))
+                                {
+                                    <td>
+                                        <a asp-action="Edit" asp-controller="Test" asp-route-cd="@item.Testcd">Изменить</a> |
+                                        <a asp-action="Details" asp-controller="Test" asp-route-cd="@item.Testcd">Подробности</a> |
+                                        <a asp-action="Delete" asp-controller="Test" asp-route-cd="@item.Testcd">Удалить</a> |
+                                    </td>
+                                }
+                            }
+                            @{
+                                var context = new PostgresContext();
+                                var testcd = context.Tests.Where(y => y.Themecd == item.Themecd).Select(x => x.Testcd);
+                            }
+                            <td>
+                                <a asp-action="PassTest" asp-controller="Test" asp-route-cd="@testcd">Пройти тест</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </dl>
+</div>
+<div>
+    @* <a asp-action="Edit" asp-controller="Theme" asp-route-cd="@Model.Themecd">Редактировать</a> | *@
+    <button onclick="history.back()">Назад</button>
+</div>

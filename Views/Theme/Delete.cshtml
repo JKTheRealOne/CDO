@@ -1,0 +1,39 @@
+﻿@model Theme
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Удалить</h1>
+
+<h3>Вы уверены что хотите удалить тему?</h3>
+<div>
+    <h4>Тема</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Themename)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Themename)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Themevolume)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Themevolume)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DisciplinecdNavigation.Disciplinename)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DisciplinecdNavigation.Disciplinename)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Themecd" />
+        <input type="submit" value="Удалить" class="btn btn-danger" /> |
+        <a asp-action="Index">Вернуться</a>
+    </form>
+</div>

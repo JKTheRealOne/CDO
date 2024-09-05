@@ -1,0 +1,72 @@
+﻿@using System.Security.Claims
+@model IEnumerable<LearningMaterial>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Учебные материалы</h1>
+
+@{
+    var role = ((ClaimsIdentity)User.Identity).Claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value).ToList();
+    if (role.Contains("Admin") | role.Contains("Teacher"))
+    {
+        <p>
+            <a asp-action="Create">Добавить запись</a>
+        </p>
+    }
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ThemecdNavigation.DisciplinecdNavigation.Disciplinename)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThemecdNavigation.Themename)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Materialname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Materialcontent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Materialvolume)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThemecdNavigation.DisciplinecdNavigation.Disciplinename)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThemecdNavigation.Themename)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Materialname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Materialcontent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Materialvolume)
+                </td>
+                @{
+                    if (role.Contains("Admin") | role.Contains("Teacher"))
+                    {
+                        <td>
+                            <a asp-action="Edit" asp-controller="LearningMaterial" asp-route-cd="@item.LearningMaterialcd">Изменить</a> |
+                            <a asp-action="Details" asp-controller="LearningMaterial" asp-route-cd="@item.LearningMaterialcd">Подробности</a> |
+                            <a asp-action="Delete" asp-controller="LearningMaterial" asp-route-cd="@item.LearningMaterialcd">Удалить</a>
+                        </td>
+                    }
+                }
+            </tr>
+        }
+    </tbody>
+</table>

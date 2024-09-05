@@ -1,0 +1,96 @@
+﻿@model Group 
+@using CDO.Data
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Подробности</h1>
+
+<div>
+    <h4>Группа</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Number)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Number)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FinishDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FinishDate)
+        </dd>
+        @{
+            var user = Model.Users.FirstOrDefault();
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(x => user.Fio)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(x => user.Email)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Users)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Fio)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                <a asp-action="Index" asp-controller="Progress">Успеваемость</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        @{
+            var disciplines = Model.Disciplinecds.FirstOrDefault();
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(x => disciplines.Disciplinename)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(x => disciplines.UsercdNavigation.Fio)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Disciplinecds)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Disciplinename)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UsercdNavigation.Fio)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </dl>
+</div>
+<div>
+    @* <a asp-action="Edit" asp-controller="Group" asp-route-cd="@Model.Groupcd">Редактировать</a> | *@
+    <a asp-action="Index" asp-controller="Group">Вернуться</a>
+</div>

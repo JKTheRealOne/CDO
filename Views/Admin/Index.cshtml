@@ -1,0 +1,9 @@
+﻿@using CDO.Data
+@{
+    var username = Context.User.Identity.Name;
+    using var dbcontext = new PostgresContext();
+    var user = dbcontext.Users.FirstOrDefault(x => x.Login == username);
+    var userfio = user.Fio;
+}
+<h1>Добро пожаловать,@userfio</h1>
+

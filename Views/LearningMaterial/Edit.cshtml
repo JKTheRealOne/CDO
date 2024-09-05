@@ -1,0 +1,51 @@
+﻿@model LearningMaterial
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Изменить</h1>
+
+<h4>Учебный материал</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ThemecdNavigation" />
+            <input type="hidden" asp-for="LearningMaterialcd" />
+            <div class="form-group">
+                <label asp-for="Materialname" class="control-label"></label>
+                <input asp-for="Materialname" class="form-control" />
+                <span asp-validation-for="Materialname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Materialcontent" class="control-label"></label>
+                <input asp-for="Materialcontent" class="form-control" />
+                <span asp-validation-for="Materialcontent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Materialvolume" class="control-label"></label>
+                <input asp-for="Materialvolume" class="form-control" />
+                <span asp-validation-for="Materialvolume" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Themecd" class="control-label"></label>
+                <select asp-for="Themecd" class="form-control" asp-items="ViewBag.Themecd"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Вернуться</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

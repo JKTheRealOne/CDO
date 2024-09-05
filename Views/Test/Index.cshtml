@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Test>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Тесты</h1>
+
+<p>
+    <a asp-action="Create">Добавить запись</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Testname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Testnumquest)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Testduration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DisciplinecdNavigation.Disciplinename)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThemecdNavigation.Themename)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UsercdNavigation.Fio)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Testname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Testnumquest)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Testduration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DisciplinecdNavigation.Disciplinename)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThemecdNavigation.Themename)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UsercdNavigation.Fio)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-controller="Test" asp-route-cd="@item.Testcd">Изменить</a> |
+                    <a asp-action="Details" asp-controller="Test" asp-route-cd="@item.Testcd">Подробности</a> |
+                    <a asp-action="Delete" asp-controller="Test" asp-route-cd="@item.Testcd">Удалить</a> |
+                    @* <a asp-action="PassTest" asp-controller="Test" asp-route-cd="@item.Themecd">Пройти тест</a> *@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
